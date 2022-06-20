@@ -49,7 +49,7 @@ wk.register {
         g = { '<cmd>Neogit<cr>', 'Git ' },
         s = { '<cmd>wa<cr>', 'Save all opened files' },
         f = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'Format file' },
-        b = { ':NvimTreeToggle<cr>', 'File browser' },
+        b = { '<cmd>Telescope file_browser<cr>', 'File browser' },
         k = { ':WhichKey<cr>', 'Keybindings' },
         p = {
             name = "Python",
@@ -75,47 +75,14 @@ wk.register {
         },
         t = {
             name = 'Telescope',
-            p = {
-                "<cmd>lua require('telescope.builtin').pickers()<cr>",
-                'Pickers',
-            },
-            e = {
-                "<cmd>lua require('telescope.builtin').registers()<cr>",
-                'Registers',
-            },
-            m = {
-                "<cmd>lua require('telescope.builtin').man_pages()<cr>",
-                'Manual pages',
-            },
-            r = {
-                "<cmd>lua require('telescope.builtin').oldfiles()<cr>",
-                'Recent files',
-            },
-            b = {
-                "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({initial_mode='normal',previewer=false,sort_lastused=true}))<cr>",
-                'Show open buffers',
-            },
-            f = {
-                "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({previewer = false}))<cr>",
-                'Find files',
-            },
-            w = {
-                "<cmd>lua require('telescope.builtin').live_grep()<cr>",
-                'Find word',
-            },
-            h = {
-                "<cmd>lua require('telescope.builtin').help_tags()<cr>",
-                'Help tags',
-            },
-            t = { "<cmd>lua require('telescope.builtin').tags()<cr>", 'Tags' },
-            s = {
-                "<cmd>lua require('telescope.builtin').grep_string()<cr>",
-                'Find string',
-            },
-            o = {
-                "<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<cr>",
-                'Tags (only current buffers)',
-            },
+            t = { "<cmd>Telescope lsp_document_symbols<cr>", 'Tags', },
+            p = { "<cmd>Telescope project display_type=full<cr>", 'Projects', },
+            m = { "<cmd>Telescope man_pages<cr>", 'Manual pages', },
+            r = { "<cmd>Telescope oldfiles<cr>", 'Recent files', },
+            b = { "<cmd>Telescope buffers<cr>", 'Show open buffers', },
+            f = { "<cmd>Telescope find_files<cr>", 'Find files', },
+            w = { "<cmd>Telescope live_grep<cr>", 'Find word', },
+            h = { "<cmd>Telescope help_tags<cr>", 'Help tags', },
         },
         d = {
             name = 'Diagnostics',

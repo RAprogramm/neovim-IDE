@@ -4,7 +4,7 @@ require("toggleterm").setup({
 	shade_filetypes = {},
 	highlights = {
 		Normal = {
-			guibg = "#21252b",
+			guibg = "#202328",
 		},
 	},
 	direction = "horizontal",

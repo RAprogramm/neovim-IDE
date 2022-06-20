@@ -1,5 +1,4 @@
 require 'config.toggle-term'
-require 'config.nvim-tree'
 require 'config.colorscheme'
 require 'config.telescope'
 require 'config.todo-comments'
@@ -7,11 +6,24 @@ require 'config.tree-sitter'
 require 'config.which_key'
 require 'config.lualine'
 
+_G.__luacache_config = {
+    chunks = {
+        enable = true,
+        path = vim.fn.stdpath('cache') .. '/luacache_chunks',
+    },
+    modpaths = {
+        enable = true,
+        path = vim.fn.stdpath('cache') .. '/luacache_modpaths',
+    }
+}
+require("impatient").enable_profile()
+
 require('nvim_comment').setup()
 require('nvim-autopairs').setup {}
 require('indent_blankline').setup {
     show_current_context = true,
     show_current_context_start = true,
+    show_first_indent_level = false
 }
 require('nvim-cursorline').setup {
     cursorline = {

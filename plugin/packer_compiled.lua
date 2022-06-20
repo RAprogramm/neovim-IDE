@@ -156,6 +156,11 @@ _G.packer_plugins = {
     path = "/home/ra/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  ["impatient.nvim"] = {
+    loaded = true,
+    path = "/home/ra/.local/share/nvim/site/pack/packer/start/impatient.nvim",
+    url = "https://github.com/lewis6991/impatient.nvim"
+  },
   ["indent-blankline.nvim"] = {
     loaded = true,
     path = "/home/ra/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
@@ -197,7 +202,7 @@ _G.packer_plugins = {
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
-    after = { "cmp-nvim-lua", "copilot-cmp", "cmp-buffer", "cmp-calc", "cmp-cmdline", "cmp-path" },
+    after = { "cmp-cmdline", "cmp-buffer", "cmp-nvim-lua", "cmp-calc", "cmp-path", "copilot-cmp" },
     loaded = true,
     only_config = true
   },
@@ -230,11 +235,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ra/.local/share/nvim/site/pack/packer/start/nvim-notify",
     url = "https://github.com/rcarriga/nvim-notify"
-  },
-  ["nvim-tree.lua"] = {
-    loaded = true,
-    path = "/home/ra/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
-    url = "https://github.com/kyazdani42/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -293,6 +293,26 @@ _G.packer_plugins = {
     path = "/home/ra/.local/share/nvim/site/pack/packer/start/startup.nvim",
     url = "https://github.com/startup-nvim/startup.nvim"
   },
+  ["telescope-file-browser.nvim"] = {
+    loaded = true,
+    path = "/home/ra/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
+    url = "https://github.com/nvim-telescope/telescope-file-browser.nvim"
+  },
+  ["telescope-project.nvim"] = {
+    loaded = true,
+    path = "/home/ra/.local/share/nvim/site/pack/packer/start/telescope-project.nvim",
+    url = "https://github.com/nvim-telescope/telescope-project.nvim"
+  },
+  ["telescope-symbols.nvim"] = {
+    loaded = true,
+    path = "/home/ra/.local/share/nvim/site/pack/packer/start/telescope-symbols.nvim",
+    url = "https://github.com/nvim-telescope/telescope-symbols.nvim"
+  },
+  ["telescope-ui-select.nvim"] = {
+    loaded = true,
+    path = "/home/ra/.local/share/nvim/site/pack/packer/start/telescope-ui-select.nvim",
+    url = "https://github.com/nvim-telescope/telescope-ui-select.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/ra/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -316,10 +336,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: startup.nvim
-time([[Config for startup.nvim]], true)
-try_loadstring("\27LJ\2\nW\0\0\5\0\4\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0A\0\0\1K\0\1\0\26config.startup_config\nsetup\fstartup\frequire\0", "config", "startup.nvim")
-time([[Config for startup.nvim]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 try_loadstring("\27LJ\2\n*\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\15config.cmp\frequire\0", "config", "nvim-cmp")
@@ -328,17 +344,21 @@ time([[Config for nvim-cmp]], false)
 time([[Config for LuaSnip]], true)
 try_loadstring("\27LJ\2\nP\0\0\3\0\5\0\b6\0\0\0'\2\1\0B\0\2\0029\0\2\0009\0\3\0005\2\4\0B\0\2\1K\0\1\0\1\0\1\fhistory\1\nsetup\vconfig\fluasnip\frequire\0", "config", "LuaSnip")
 time([[Config for LuaSnip]], false)
+-- Config for: startup.nvim
+time([[Config for startup.nvim]], true)
+try_loadstring("\27LJ\2\nW\0\0\5\0\4\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0A\0\0\1K\0\1\0\26config.startup_config\nsetup\fstartup\frequire\0", "config", "startup.nvim")
+time([[Config for startup.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd nvim-treesitter ]]
-vim.cmd [[ packadd nvim-ts-rainbow ]]
 vim.cmd [[ packadd nvim-treesitter-textsubjects ]]
 vim.cmd [[ packadd nvim-treesitter-textobjects ]]
+vim.cmd [[ packadd nvim-ts-rainbow ]]
+vim.cmd [[ packadd cmp-path ]]
+vim.cmd [[ packadd cmp-calc ]]
 vim.cmd [[ packadd cmp-nvim-lua ]]
 vim.cmd [[ packadd cmp-buffer ]]
 vim.cmd [[ packadd cmp-cmdline ]]
-vim.cmd [[ packadd cmp-path ]]
-vim.cmd [[ packadd cmp-calc ]]
 time([[Sequenced loading]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]

@@ -1,7 +1,3 @@
-local utils = require("utils")
-
-utils.opt("o", "termguicolors", true)
-
 local onedark = require("onedark")
 onedark.setup({
     highlights = {
@@ -12,8 +8,8 @@ onedark.setup({
         FloatBorder = { fg = "Gray", bg = "none" },
         Diagnostic = { fg = "Yellow", fmt = "italic,bold,underline" },
         Folded = { fg = "#5c6370", bg = "none" },
-        -- TSComment = { fmt = "bold" },
-        -- Comment = { fmt = "bold" },
+        TSComment = { fmt = "none" },
+        Comment = { fmt = "none" },
         StatusLine = { bg = "none" },
         LspSignatureActiveParameter = { fg = "LightGreen", fmt = "bold,underline" },
     },

@@ -15,6 +15,5 @@ vim.defer_fn(function()
 		set t_ut=
 		silent! bufdo e
 		PackerLoad nvim-treesitter
-		lua require'colorizer'.setup()
 	]]
 end, 15)

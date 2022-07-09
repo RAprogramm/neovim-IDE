@@ -17,6 +17,7 @@ _G.__luacache_config = {
     }
 }
 require("impatient").enable_profile()
+require 'colorizer'.setup()
 
 require('nvim_comment').setup()
 require('nvim-autopairs').setup {}

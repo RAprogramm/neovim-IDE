@@ -24,7 +24,7 @@ vim.diagnostic.config({
 })
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = true,
+    virtual_text = false,
     signs = true,
     underline = true,
     update_in_insert = false }
@@ -84,7 +84,23 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     properties = { "documentation", "detail", "additionalTextEdits" },
 }
 
-local on_attach = function(client)
+local signature_config = {
+    bind = true,
+    hint_enable = false,
+    handler_opts = {
+        border = "rounded"
+    },
+    floating_window = true,
+    floating_window_above_cur_line = true,
+    cursorhold_update = false
+}
+print()
+local on_attach = function(client, bufnr)
+    require 'lsp_signature'.on_attach(signature_config, bufnr)
+    if client.name == 'tsserver' then
+        client.resolved_capabilities.document_formatting = false
+    end
+
     local signs = {
         { name = "DiagnosticSignError", text = "" },
         { name = "DiagnosticSignWarn", text = "" },
@@ -102,17 +118,6 @@ local on_attach = function(client)
         vim.lsp.handlers.signature_help,
         { border = border, focusable = true }
     )
-    require("lsp_signature").on_attach({
-        hint_enable = false,
-        hint_scheme = "Comment",
-        bind = true,
-        handler_opts = {
-            border = "rounded"
-        },
-        floating_window = true,
-        floating_window_above_cur_line = false
-    })
-
     require("lspkind").init({
         mode = "symbol_text",
         preset = "codicons",
@@ -161,6 +166,7 @@ local on_attach = function(client)
     end
 end
 
+
 local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.setup({
     ui = {
@@ -181,39 +187,33 @@ lspconfig.sumneko_lua.setup {
         },
     }
 }
-lspconfig.dockerls.setup {
+lspconfig.emmet_ls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
     flags = { debounce_text_changes = 150 },
-}
-lspconfig.emmet_ls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = { debounce_text_changes = 150 },
-}
-lspconfig.esbonio.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = { debounce_text_changes = 150 },
-}
-lspconfig.yamlls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = { debounce_text_changes = 150 },
-}
-lspconfig.pyright.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = { debounce_text_changes = 150 },
-}
+    filetypes = { 'htmldjango', 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
+})
+
+local servers = { 'vuels', 'dockerls', 'tsserver', 'esbonio', 'yamlls', 'pyright' }
+for _, server in ipairs(servers) do
+    lspconfig[server].setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        flags = { debounce_text_changes = 150 },
+    }
+end
 null_ls.setup({
     sources = {
-        null_ls.builtins.formatting.prettier.with({
-            disabled_filetypes = { 'vue' }
-        }),
+        null_ls.builtins.formatting.prettier,
+        -- null_ls.builtins.formatting.prettier.with({
+        --     disabled_filetypes = { 'vue' }
+        -- }),
         null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.isort,
         null_ls.builtins.formatting.djlint,
+        null_ls.builtins.diagnostics.djlint,
         null_ls.builtins.diagnostics.rstcheck,
+        null_ls.builtins.completion.tags
     },
 })
+require("lsp_signature").setup(signature_config)

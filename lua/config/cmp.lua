@@ -57,7 +57,6 @@ cmp.setup {
         { name = 'calc' },
         { name = 'path' },
         { name = 'buffer' },
-        { name = 'copilot' },
     },
     formatting = {
         format = function(entry, vim_item)

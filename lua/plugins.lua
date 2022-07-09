@@ -72,17 +72,6 @@ return require('packer').startup {
         use 'folke/lsp-colors.nvim'
         use 'neovim/nvim-lspconfig'
         -- completions
-        use { 'zbirenbaum/copilot-cmp',
-            after = { 'copilot.lua', 'nvim-cmp' },
-        }
-        use { 'zbirenbaum/copilot.lua',
-            event = 'InsertEnter',
-            config = function()
-                vim.schedule(function()
-                    require('copilot').setup()
-                end)
-            end,
-        }
         use 'hrsh7th/cmp-nvim-lsp'
         use { 'saadparwaiz1/cmp_luasnip' }
         use { 'L3MON4D3/LuaSnip',
